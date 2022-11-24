@@ -1,0 +1,78 @@
+* {
+    top: 50%;
+    left: 50%;
+    background-color: #ffe58d;
+}
+
+
+.App {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    transform: translate(-50%, -50%)
+}
+
+.Connection {
+    width: 200px;
+    height: 200px;
+    border-radius: 25px;
+    background-color: #333;
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    transform: translate(-50%, -50%)
+}
+
+
+.Connection #setTokenButton {    
+    width: 100px;
+    height: 30px;
+    border-radius: 25px;   
+    background: #333;
+    color: #ffe58d;
+}
+
+.Connection #setTokenh1{
+    width: 150px;
+    height: 40px;
+    background-color:#333;
+    color: #ffe58d;
+    border-radius: 10px;
+}
+
+.Connection #tokenField{
+    width: 180px;
+    height: 15px;
+    border-radius: 10px;
+}
+
+div.CarsCounter {
+    width: 250px;
+    height: 150px;
+    border-radius: 25px;
+    background-color: #333;
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    transform: translate(-50%, -50%)
+}
+
+div.CarsCounter #carsCounterh1{
+    width: 200px;
+    height: 100px;
+    background-color: #333;
+    color:#ffe58d;
+    border-radius: 10px;
+    white-space: nowrap;
+    margin-top: 5px;
+}
+
+div.CarsCounter #counterValue{
+    width: 10px;
+    height: 30px;
+    background: #333;
+    color: #ffe58d;
+    margin-top: -20px;
+}

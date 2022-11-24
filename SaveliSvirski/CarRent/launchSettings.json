@@ -1,0 +1,21 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "catalogapi": "StartWithoutDebugging",
+        "identityapi": "StartWithoutDebugging",
+        "rentapi": "StartWithoutDebugging",
+        "elasticsearch": "DoNotStart",
+        "kibana": "DoNotStart",
+        "rabbitmq": "StartWithoutDebugging",
+        "IdentityDb": "StartWithoutDebugging",
+        "Postgres": "StartWithoutDebugging",
+        "nginx": "StartWithoutDebugging",
+        "Redis": "StartWithoutDebugging",
+        "client": "StartWithoutDebugging"
+      }
+    }
+  }
+}

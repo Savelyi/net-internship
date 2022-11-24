@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+	<Product Description="Cardigan Sweater" ProductImage="cardigan.jpg">
+		<CatalogItem Gender="Men's">
+			<ItemNumber>QWZ5671</ItemNumber>
+			<Price>39.95</Price>
+			<Size Description="Medium">
+				<ColorSwatch Image="red_cardigan.jpg">Red</ColorSwatch>
+				<ColorSwatch Image="burgundy_cardigan.jpg">Burgundy</ColorSwatch>
+			</Size>
+			<Size Description="Large">
+				<ColorSwatch Image="red_cardigan.jpg">Red</ColorSwatch>
+				<ColorSwatch Image="burgundy_cardigan.jpg">Burgundy</ColorSwatch>
+				<ColorSwatch Image="blue_cardigan.jpg">Blue</ColorSwatch>
+			</Size>
+		</CatalogItem>
+		<CatalogItem Gender="Women's">
+			<ItemNumber>RRX9856</ItemNumber>
+			<Price>42.5</Price>
+			<Size Description="Small">
+				<ColorSwatch Image="red_cardigan.jpg">Red</ColorSwatch>
+				<ColorSwatch Image="navy_cardigan.jpg">Navy</ColorSwatch>
+				<ColorSwatch Image="burgundy_cardigan.jpg">Burgundy</ColorSwatch>
+			</Size>
+			<Size Description="Medium">
+				<ColorSwatch Image="red_cardigan.jpg">Red</ColorSwatch>
+				<ColorSwatch Image="navy_cardigan.jpg">Navy</ColorSwatch>
+				<ColorSwatch Image="burgundy_cardigan.jpg">Burgundy</ColorSwatch>
+				<ColorSwatch Image="black_cardigan.jpg">Black</ColorSwatch>
+			</Size>
+			<Size Description="Large">
+				<ColorSwatch Image="navy_cardigan.jpg">Navy</ColorSwatch>
+				<ColorSwatch Image="black_cardigan.jpg">Black</ColorSwatch>
+			</Size>
+			<Size Description="Extra Large">
+				<ColorSwatch Image="burgundy_cardigan.jpg">Burgundy</ColorSwatch>
+				<ColorSwatch Image="black_cardigan.jpg">Black</ColorSwatch>
+			</Size>
+		</CatalogItem>
+	</Product>
+</Catalog>

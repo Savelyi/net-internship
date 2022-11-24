@@ -1,0 +1,64 @@
+version: '3.4'
+
+services:
+  catalogapi:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/CatalogApi/Dockerfile
+    depends_on:
+      - Postgres
+
+  identityapi:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: Services/Identity/IdentityApi/Dockerfile
+    depends_on:
+      - IdentityDb
+
+  rentapi:
+    image: ${DOCKER_REGISTRY-}rentapi
+    build:
+      context: .
+      dockerfile: Services/Rent/RentApi/Dockerfile
+    depends_on:
+      - Postgres
+  
+  rabbitmq:
+    container_name: "rabbitmq1"
+    image: rabbitmq:3-management
+  
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+  
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.16.1
+    depends_on:
+      - elasticsearch
+
+  Postgres:
+    image: postgres:14.1-alpine
+
+  IdentityDb:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    container_name: IdentityDb
+
+  Redis:
+    image: redis:6.2-alpine
+    
+  client:
+    image: client
+    build:
+        context: F:\InternShip\net-internship\SaveliSvirski\Client\signalr
+        dockerfile: Dockerfile
+
+
+  nginx:
+    image: nginx:mainline
+    depends_on:
+      - identityapi
+      - rentapi
+      - catalogapi

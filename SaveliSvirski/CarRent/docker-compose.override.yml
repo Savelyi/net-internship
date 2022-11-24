@@ -1,0 +1,135 @@
+version: '3.4'
+
+services:
+     IdentityDb:
+        ports:
+          - 1433:1433
+        volumes:
+          - sql-server-vol:/var/opt/mssql
+        environment:
+          - ACCEPT_EULA=Y
+          - SA_PASSWORD=Userpas123
+        networks:
+          - carrent-network
+     
+     Postgres:
+        restart: always
+        environment:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: user
+          POSTGRES_MULTIPLE_DATABASES: CatalogDb,RentsDb,HangfireDb
+        ports:
+        - '5432:5432'
+        volumes: 
+        - postgres-vol:/var/lib/postgresql/data
+        networks:
+        - carrent-network
+
+     elasticsearch:
+        ports:
+          - 9200:9200
+        volumes:
+          - elasticsearch-data:/usr/share/elasticsearch/data
+        environment:
+          - xpack.monitoring.enabled=true
+          - xpack.watcher.enabled=false
+          - xpack.ml.enabled=false
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+          - discovery.type=single-node
+        networks:
+          - carrent-network
+
+     kibana:
+        ports:
+          - 5601:5601
+        environment:
+          - ELASTICSEARCH_URL=http://localhost:9200
+        networks:
+          - carrent-network
+        
+     rabbitmq:
+        environment:
+          RABBITMQ_DEFAULT_USER: user
+          RABBITMQ_DEFAULT_PASS: userpas
+        ports:
+          - "5672:5672"
+          - "15672:15672"
+        networks:
+          - carrent-network
+
+     catalogapi:
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Docker
+          - ASPNETCORE_URLS=http://+:80
+        ports:
+          - "2400:80"
+        volumes:
+          - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+          - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+        networks:
+          - carrent-network
+        
+
+     identityapi:
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Docker
+          - ASPNETCORE_URLS=http://+:80
+        ports:
+          - "2410:80"
+        volumes:
+          - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+          - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+        networks:
+          - carrent-network
+
+     rentapi:
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Docker
+          - ASPNETCORE_URLS=http://+:80
+        ports:
+          - "2420:80"
+        volumes:
+          - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+          - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+        networks:
+          - carrent-network
+
+     Redis:
+        restart: always
+        ports:
+          - 6379:6379
+        command: redis-server --save 20 1 --loglevel warning 
+        volumes: 
+          - redis-vol:/data
+        networks:
+          - carrent-network
+
+     nginx:
+        volumes:
+          - ./nginx.conf:/etc/nginx/nginx.conf
+        ports:
+          - "10000:80"
+        networks:
+          - carrent-network
+
+     client:
+        ports:
+          - "2450:3000"
+        networks:
+          - carrent-network
+
+
+networks:
+    carrent-network:
+        driver: bridge
+
+volumes:
+    elasticsearch-data:
+        external: false
+    sql-server-vol:
+        external: false
+    postgres-vol:
+        external: false
+    redis-vol:
+  
+  
