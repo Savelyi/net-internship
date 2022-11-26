@@ -54,7 +54,7 @@ http {
 		}
 		
 		location / {
-			proxy_pass proxy_pass http://client:3000;
+			proxy_pass http://client:3000;
 		}
 	}
 }

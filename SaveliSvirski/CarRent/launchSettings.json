@@ -14,7 +14,7 @@
         "Postgres": "StartWithoutDebugging",
         "nginx": "StartWithoutDebugging",
         "Redis": "StartWithoutDebugging",
-        "client": "StartWithoutDebugging"
+        "client": "DoNotStart"
       }
     }
   }
